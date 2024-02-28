@@ -136,6 +136,7 @@
 
     </div>
     </div>
+    <button class="btn btn-success" onclick="Bonus()">New Game</button>
     <script>
         var ids = [];
         for (var i = 0; i < 35; i++) {
@@ -152,14 +153,14 @@
             console.log("img.src before change:", img.src);
             if (position == monsterLocation) {
                 img.src = "Monster.jpg";
-                gameOver = true; // Step 11i
-                score = score - 5; // Step 11i
+                gameOver = true; 
+                score = score - 5; 
             } else if (fancyCoinLocations.includes(position)) {
                 img.src = "Fancier Image.jpg"
-                score += 3; // Step 11f
+                score += 3; 
             } else {
                 img.src = "Coin.png";
-                score += 1; // Step 11e
+                score += 1; 
             }
             locations++;
             document.getElementById("locations").textContent = "Number of locations checked is " + locations + ".";
@@ -175,10 +176,10 @@
             var monsterCol = monsterLocation % 5;
 
             var kinshipLocations = [
-                lastLocation - 1, // Left
-                lastLocation + 1, // Right
-                lastLocation - 5, // Up
-                lastLocation + 5  // Down
+                lastLocation - 1, 
+                lastLocation + 1, 
+                lastLocation - 5, 
+                lastLocation + 5  
             ];
 
             for (var i = 0; i < kinshipLocations.length; i++) {
@@ -194,11 +195,46 @@
                 return;
             }
 
-            // Step 12d
             document.getElementById("help").textContent = "All clear";
 
 
         }
+
+        function Bonus() {
+           score = 0;
+            locations =0;
+            monsterLocation = Math.floor(Math.random() * 35);
+            var fancyCoinLocation = Math.floor(Math.random() * 35);
+
+            // Ensure that the monster and fancy coin do not spawn in the same location initially
+            while (monsterLocation === fancyCoinLocation) {
+                fancyCoinLocation = Math.floor(Math.random() * 35);
+            }
+     
+
+            fancyCoinLocations[0] = newFancyCoinLocation;
+            document.getElementById("locations").innerHTML = "Number of locations checked is zero";
+            document.getElementById("score").innerHTML = "Score is zero";
+            document.getElementById("help").innerHTML = "Help Report";
+
+            // Reset all locations to the default image
+            for (let i = 0; i < 35; i++) {
+                var id = ids[i];
+                var img = document.getElementById(id);
+                img.src = "Building.jpg";
+            }
+        }
+        function fancyCoinRandom() {
+    var locations = [];
+    while (locations.length < 6) 
+    {
+        var fancyLocation = Math.floor(Math.random() * 35);
+        if (!locations.includes(fancyLocation)) {
+            locations.push(fancyLocation);
+        }
+    }
+    return locations;
+}
     </script>
 </body>
 
