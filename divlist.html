@@ -40,18 +40,16 @@
 		<button onclick="makeNewDiv()">Add end</button>
         <button onclick="addFront()">Add front</button>
         <button onclick="remove()">Remove</button>
+        <button onclick="swap()">Swap</button>
 	
 	
 </body>
 <script>
 	function makeNewDiv(){
         let input= document.getElementById("inputvar").value;
-		/* make the div and its text */
 		let element = document.createElement("div")
 		element.innerHTML = input;
 		element.className = "divlist";
-
-		/* add it to the container */
 		let container = document.getElementById('target')
 		container.appendChild(element)
 		
@@ -68,15 +66,36 @@
 
     function addFront(){
         let input= document.getElementById("inputvar").value;
-		/* make the div and its text */
 		let element = document.createElement("div")
 		element.innerHTML = input;
 		element.className = "divlist";
-
-		/* add it to the container */
 		let container = document.getElementById('target')
 		container.insertBefore(element,container.firstChild);
 		
 	}
+
+    function swap()
+    {
+        let items = document.getElementsByClassName("divlist");
+        let length = items.length;
+
+        if (length < 2) {
+            alert("There must be at least two elements to swap.");
+            return;
+        }
+        let position1 = Math.floor(Math.random() * length);
+        let position2;
+        do {
+            position2 = Math.floor(Math.random() * length);
+        } while (position2 === position1);
+
+        let item1 = items[position1];
+        let item2 = items[position2];
+        let parent = item1.parentNode;
+        let nextSibling1 = item1.nextSibling;
+        let nextSibling2 = item2.nextSibling;
+        parent.insertBefore(item1, nextSibling2);
+        parent.insertBefore(item2, nextSibling1);
+    }
 </script>
 </html>	
