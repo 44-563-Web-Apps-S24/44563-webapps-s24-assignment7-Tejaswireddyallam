@@ -28,14 +28,13 @@
       }
     
       function startTime() {
-        let countDown = Math.floor(Math.random() * 9) + 2; 
+       let countDown = Math.floor(Math.random() * 9) + 2; 
        document.getElementById("countdown").innerHTML = "Countdown: " + countDown; 
 
-    setTimeout(function() {
       document.getElementById("target").innerHTML = "Your time";
       for (let i = 0; i < 5; i++) {
         setTimeout(function() {
-          document.getElementById("counter").innerHTML = "Count " +  i;
+          document.getElementById("counter").innerHTML = "Count" +  i;
         }, (4 - i) * 1000);
       }
 
@@ -46,8 +45,7 @@
           let Time = stopTime - (Date.now() - 4000);
           document.getElementById("target").innerHTML = "Time was " + Time + "ms";
         }
-      }, 4000);
-    }, countDown * 1000); 
+      }, 4000); 
   }
     </script>
     
