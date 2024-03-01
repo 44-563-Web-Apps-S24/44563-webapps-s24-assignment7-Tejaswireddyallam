@@ -201,33 +201,31 @@
         }
 
         function Bonus() {
-           score = 0;
-            locations =0;
-            monsterLocation = Math.floor(Math.random() * 35);
-            var fancyCoinLocation = Math.floor(Math.random() * 35);
+    score = 0;
+    locations = 0;
+    monsterLocation = Math.floor(Math.random() * 35);
+    var fancyCoinLocation = Math.floor(Math.random() * 35);
 
-            // Ensure that the monster and fancy coin do not spawn in the same location initially
-            while (monsterLocation === fancyCoinLocation) {
-                fancyCoinLocation = Math.floor(Math.random() * 35);
-            }
-     
+    // Ensure that the monster and fancy coin do not spawn in the same location initially
+    while (monsterLocation === fancyCoinLocation) {
+        fancyCoinLocation = fancyCoinRandom();
+    }
+    
+    fancyCoinLocations[0] = fancyCoinLocation; // Update the fancy coin location
+    document.getElementById("locations").innerHTML = "Number of locations checked is zero";
+    document.getElementById("score").innerHTML = "Score is zero";
+    document.getElementById("help").innerHTML = "Help Report";
 
-            fancyCoinLocations[0] = newFancyCoinLocation;
-            document.getElementById("locations").innerHTML = "Number of locations checked is zero";
-            document.getElementById("score").innerHTML = "Score is zero";
-            document.getElementById("help").innerHTML = "Help Report";
+    // Reset all locations to the default image
+    for (let i = 0; i < 35; i++) {
+        var id = ids[i];
+        var img = document.getElementById(id);
+        img.src = "Building.jpg";
+    }
 
-            // Reset all locations to the default image
-            for (let i = 0; i < 35; i++) {
-                var id = ids[i];
-                var img = document.getElementById(id);
-                img.src = "Building.jpg";
-            }
-        }
-        function fancyCoinRandom() {
+    function fancyCoinRandom() {
     var locations = [];
-    while (locations.length < 6) 
-    {
+    while (locations.length < 6) {
         var fancyLocation = Math.floor(Math.random() * 35);
         if (!locations.includes(fancyLocation)) {
             locations.push(fancyLocation);
@@ -235,6 +233,8 @@
     }
     return locations;
 }
+}
+
     </script>
 </body>
 
